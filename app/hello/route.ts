@@ -1,15 +1,14 @@
-export async function GET(request: Request) {
-    console.log(request.url)
-    const { searchParams } = new URL(request.url)
-    const queryParams: Record<string, string> = {}
-    for (const [key, value] of searchParams.entries()) {
-        queryParams[key] = value
-    }
+import type { NextRequest } from "next/server";
 
-    return Response.json(queryParams)
+export async function GET(request: NextRequest, {params}: {params: Promise<{team: string}>}) {
+    const searchParams = Object.fromEntries(request.nextUrl.searchParams);
+    console.log(searchParams); // { name: 'york', age: '30' }
+    return Response.json(searchParams);
 }
 
-export async function POST(request: Request) {
+
+
+export async function POST(request: NextRequest) {
     const body = await request.json()
     return Response.json(body)
 }
