@@ -4,3 +4,4 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const { team } = await params
     return Response.json({ team })
 }
+
