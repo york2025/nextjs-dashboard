@@ -11,7 +11,7 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' })
 
 async function getUser(email: string): Promise<User | undefined> {
     try {
-        const user = await sql<User[]>`select * from user where email=$(email)`
+        const user = await sql<User[]>`select * from user where email=${email}`
         return user[0]
     }
     catch (error) {
